@@ -1,33 +1,32 @@
 import socket
-import thread
+import os
+from _thread import *
 
-# Host IP/Port
-tcpIP = '123.4.5.6'
-tcpPort = 2222
-BUFFER = 1024
-
-# Accept new client on thread
-def new_client():
-    while True:
-        data = client.recv(BUFFER)
-        reply = "Connected to server!"
-        client.send(reply)
-    client.close()
+sock = socket.socket()
+TCP_IP = '127.0.0.1'
+TCP_PORT = 2222
+BUFFER_SIZE = 2048
 
 # Start server
-sock = socket.socket()
 try:
-    sock.bind((tcpIP, tcpPort))
-    print("Server started")
+    sock.bind((TCP_IP, TCP_PORT))
 except socket.error as e:
     print(str(e))
 
-# Wait for connection
+# Listen for client
+print('Waiting for client...')
 sock.listen(5)
 
-# Accept clients and place on threads
-num_threads = 0
-while True:
-    cli, addr = s.accept()
-    thread.start_new_thread(new_client,(cli,addr))
+# Accept new client on thread
+def new_client(client):
+    while True:
+        data = client.recv(BUFFER_SIZE)
+        client.sendall(str.encode("Received!"))
+    client.close()
 
+# Accept/place clients on threads
+while True:
+    cli, addr = sock.accept()
+    print('Connected to: ' + addr[0] + ':' + str(addr[1]))
+    start_new_thread(new_client, (cli, ))
+sock.close()
