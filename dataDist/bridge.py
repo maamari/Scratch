@@ -51,5 +51,6 @@ while True:
     clients.append(cli)
     print('Connected to: ' + addr[0] + ':' + str(addr[1]))
     
-    start_new_thread(new_client, (cli, ))
+    new_client(cli)
+    #start_new_thread(new_client, (cli, ))
 bridge_sock.close()
