@@ -27,8 +27,9 @@ except socket.error as e:
 print('Waiting for client...')
 bridge_sock.listen(5)
 
-# Accept new client on thread
+# Accept new client on threads
 def new_client(client):
+    first=True
     while True:
         '''
         NEED TO FIX:
@@ -38,6 +39,9 @@ def new_client(client):
         data = sock.recv(BUFFER_SIZE)    
         print(data.decode('utf-8'))    
         for c in clients:
+            if first: 
+                first = False
+                continue
             try: c.sendall(data)            
             except socket.error as e:
                 print(str(e))
