@@ -1,5 +1,6 @@
 import socket
 from _thread import *
+import threading
 
 sock = socket.socket()
 bridge_sock = socket.socket()
@@ -29,19 +30,10 @@ bridge_sock.listen(5)
 
 # Accept new client on threads
 def new_client(client):
-    first=True
     while True:
-        '''
-        NEED TO FIX:
-        There's a bug in here, for the first pass of data sent to a client, multiple values are combined and sent at once. 
-        '''
-        #if i==0: continue 
         data = sock.recv(BUFFER_SIZE)    
         print(data.decode('utf-8'))    
         for c in clients:
-            if first: 
-                first = False
-                continue
             try: c.sendall(data)            
             except socket.error as e:
                 print(str(e))
@@ -54,7 +46,12 @@ while True:
     cli, addr = bridge_sock.accept()
     clients.append(cli)
     print('Connected to: ' + addr[0] + ':' + str(addr[1]))
-    
-    new_client(cli)
+    print(clients)
+
+    #new_client(cli)
     #start_new_thread(new_client, (cli, ))
+    for c in clients:
+        thread1 = threading.Thread(target = new_client, args = (c, ))
+    thread1.start()
+
 bridge_sock.close()
