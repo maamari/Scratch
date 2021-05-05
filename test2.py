@@ -2,7 +2,7 @@ from pymap3d import aer2ecef
 from math import degrees,atan2, sqrt, sin, cos, radians, pi
 import numpy as np
 
-R = 6378137
+R = 6378137.0
 R2 = 20350000
 flat = 298.257223563
 
