@@ -25,9 +25,9 @@ def new_client(client):
     while True:
         #data = client.recv(BUFFER_SIZE)
         time.sleep(1)
-        data = random.randint(0,9)
+        data = str(random.randint(0,9))
         for c in clients:
-            c.sendall(str(data).encode('utf-8'))
+            c.sendall(data.encode('utf-8'))
     client.close()
 
 # Accept/place clients on threads

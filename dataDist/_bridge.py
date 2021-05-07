@@ -16,15 +16,17 @@ addresses = {}
 
 # Relay data to clients
 def newClient(clients):
-  firstPass = True
+#  firstPass = True
   while True:
-    try: data = sock.recv(BUFFER_SIZE)
+    try: 
+        data = sock.recv(BUFFER_SIZE)
+        print(data)
     except socket.error: 
         sock.close()
         return
-    if firstPass == True:
-      firstPass = False
-      continue
+#    if firstPass == True:
+#      firstPass = False
+#      continue
     with lock:
       for c in connectedClients:
         try: c.sendall(data)
