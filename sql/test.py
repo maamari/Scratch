@@ -4,13 +4,13 @@ class Database:
     def __init__(self,db):
         self.conn = sqlite3.connect(db)
         self.cur = self.conn.cursor()
-        self.cur.execute("CREATE TABLE IF NOT EXISTS query (id INTEGER PRIMARY KEY, title TEXT, author TEXT, year INTEGER, isbn INTEGER)")
+        self.cur.execute("CREATE TABLE IF NOT EXISTS query (id INTEGER PRIMARY KEY, maker TEXT, model TEXT, tyype INTEGER, price INTEGER)")
         self.conn.commit()
 
-    def insert(self,title, author, year, isbn):
+    def insert(self,maker, model, tyype, price):
         #the NULL parameter is for the auto-incremented id
         self.cur.execute("INSERT INTO query VALUES(NULL,?,?,?,?)",
-                         [title,author,year,isbn])
+                         [maker,model,tyype,price])
         self.conn.commit()
 
     def view(self):
@@ -18,9 +18,9 @@ class Database:
         rows = self.cur.fetchall()
         return rows
 
-    def search(self,title="", author="", year="", isbn=""):
-        self.cur.execute("SELECT * FROM query WHERE title = ? OR author = ? OR year = ? OR isbn = ?", 
-                         (title, author, year, isbn))
+    def search(self,maker="", model="", tyype="", price=""):
+        self.cur.execute("SELECT * FROM query WHERE maker = ? OR model = ? OR tyype = ? OR price = ?", 
+                         (maker, model, tyype, price))
         rows = self.cur.fetchall()
         #conn.close()
         return rows
@@ -30,8 +30,8 @@ class Database:
         self.conn.commit()
         #conn.close()
 
-    def update(self,id, title, author, year, isbn):
-        self.cur.execute("UPDATE query SET title = ?, author = ?, year = ?, isbn = ? WHERE id = ?", [title, author, year, isbn, id])
+    def update(self,id, maker, model, tyype, price):
+        self.cur.execute("UPDATE query SET maker = ?, model = ?, tyype = ?, price = ? WHERE id = ?", [maker, model, tyype, price, id])
         self.conn.commit()
 
     #destructor-->now we close the connection to our database here
@@ -55,33 +55,33 @@ class Window(object):
         l2 = Label(window, text="Model", font=("Courier",20))
         l2.grid(row=0, column=2, padx=10, pady=20)
 
-        l3 = Label(window, text="Type", font=("Courier",20))
+        l3 = Label(window, text="tyype", font=("Courier",20))
         l3.grid(row=1, column=0, padx=10)
 
         l4 = Label(window, text="Price", font=("Courier",20))
         l4.grid(row=1, column=2, padx=10)
 
-        self.title_text = StringVar()
+        self.maker_text = StringVar()
         self.e1 = Entry(window, width=30, 
-                        textvariable=self.title_text, 
+                        textvariable=self.maker_text, 
                         font=('Courier', 15))
         self.e1.grid(row=0, column=1)
 
-        self.author_text = StringVar()
+        self.model_text = StringVar()
         self.e2 = Entry(window, width=30, 
-                        textvariable=self.author_text, 
+                        textvariable=self.model_text, 
                         font=('Courier', 15))
         self.e2.grid(row=0, column=3)
 
-        self.year_text = StringVar()
+        self.type_text = StringVar()
         self.e3 = Entry(window, width=30, 
-                        textvariable=self.year_text, 
+                        textvariable=self.type_text, 
                         font=('Courier', 15))
         self.e3.grid(row=1, column=1)
 
-        self.ISBN_text = StringVar()
+        self.price_text = StringVar()
         self.e4= Entry(window, width=30, 
-                       textvariable=self.ISBN_text, 
+                       textvariable=self.price_text, 
                        font=('Courier', 15))
         self.e4.grid(row=1, column=3)
 
@@ -156,20 +156,20 @@ class Window(object):
 
     def search_command(self):
         self.list1.delete(0, END)
-        for row in database.search(self.title_text.get(), 
-                                   self.author_text.get(), 
-                                   self.year_text.get(), 
-                                   self.ISBN_text.get()):
+        for row in database.search(self.maker_text.get(), 
+                                   self.model_text.get(), 
+                                   self.type_text.get(), 
+                                   self.price_text.get()):
             self.list1.insert(END, row)
 
     def add_command(self):
-        if (' ' in self.title_text.get()) or (' ' in self.author_text.get()) or (' ' in self.year_text.get()) or (' ' in self.ISBN_text.get()):
+        if (' ' in self.maker_text.get()) or (' ' in self.model_text.get()) or (' ' in self.type_text.get()) or (' ' in self.price_text.get()):
             messagebox.showinfo("Error!", "Please use underscores, not spaces",icon="error")
             return
 
-        database.insert(self.title_text.get(), self.author_text.get(), self.year_text.get(), self.ISBN_text.get())
+        database.insert(self.maker_text.get(), self.model_text.get(), self.type_text.get(), self.price_text.get())
         self.list1.delete(0, END)
-        self.list1.insert(END, (self.title_text.get(), self.author_text.get(), self.year_text.get(), self.ISBN_text.get()))
+        self.list1.insert(END, (self.maker_text.get(), self.model_text.get(), self.type_text.get(), self.price_text.get()))
 
     def delete_command(self):
         database.delete(self.selected_tuple[0])
@@ -177,7 +177,7 @@ class Window(object):
 
     def update_command(self):
         #be careful for the next line ---> we are updating using the texts in the entries, not the selected tuple
-        database.update(self.selected_tuple[0],self.title_text.get(), self.author_text.get(), self.year_text.get(), self.ISBN_text.get())
+        database.update(self.selected_tuple[0],self.maker_text.get(), self.model_text.get(), self.type_text.get(), self.price_text.get())
         self.view_command()
 
 #code for the GUI (front end)
