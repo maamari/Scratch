@@ -1,6 +1,57 @@
 #include <iostream>
 #include <fstream>
 
+void outputItem(std::ofstream f, 
+                double        altitude, 
+                double        longitude, 
+                double        latitude, 
+                int           command_code,
+                int           jump_id,
+                int           hold_time)
+{
+  if (command_code == 20)
+  {
+    f << "            {\n";
+    f << "                \"autoContinue\": true,\n";
+    f << "                \"command\": " << command_code << ",\n";
+    f << "                \"doJumpId\": " << jump_id << ",\n";
+    f << "                \"frame\": 2,\n";
+    f << "                \"params\": [\n";
+    f << "                    " << hold_time << ",\n";
+    f << "                    0,\n";
+    f << "                    0,\n";
+    f << "                    0,\n";
+    f << "                    " << longitude << ",\n";
+    f << "                    " << latitude << ",\n";
+    f << "                    " << altitude << "\n";
+    f << "                ],\n";
+    f << "                \"type\": \"SimpleItem\"\n";
+    f << "            }\n";
+  }
+  else
+  {
+    f << "            {\n";
+    f << "                \"AMSLAltAboveTerrain\": null,\n";
+    f << "                \"Altitude\": " << altitude << ",\n";
+    f << "                \"AltitudeMode\": 1,\n";
+    f << "                \"autoContinue\": true,\n";
+    f << "                \"command\": " << command_code << ",\n";
+    f << "                \"doJumpId\": " << jump_id << ",\n";
+    f << "                \"frame\": 3,\n";
+    f << "                \"params\": [\n";
+    f << "                    " << hold_time << ",\n";
+    f << "                    0,\n";
+    f << "                    0,\n";
+    f << "                    null,\n";
+    f << "                    " << longitude << ",\n";
+    f << "                    " << latitude << ",\n";
+    f << "                    " << altitude << "\n";
+    f << "                ],\n";
+    f << "                \"type\": \"SimpleItem\"\n";
+    f << "            },\n";
+  }
+}
+
 int main()
 {
   std::ofstream f;
@@ -22,122 +73,19 @@ int main()
   f << "        \"globalPlanAltitudeMode\": 1,\n";
   f << "        \"hoverSpeed\": 5,\n";
   f << "        \"items\": [\n";
-  f << "            {\n";
-  f << "                \"AMSLAltAboveTerrain\": null,\n";
-  f << "                \"Altitude\": 50,\n";
-  f << "                \"AltitudeMode\": 1,\n";
-  f << "                \"autoContinue\": true,\n";
-  f << "                \"command\": 22,\n";
-  f << "                \"doJumpId\": 1,\n";
-  f << "                \"frame\": 3,\n";
-  f << "                \"params\": [\n";
-  f << "                    15,\n";
-  f << "                    0,\n";
-  f << "                    0,\n";
-  f << "                    null,\n";
-  f << "                    37.08573377,\n";
-  f << "                    -76.37887271,\n";
-  f << "                    50\n";
-  f << "                ],\n";
-  f << "                \"type\": \"SimpleItem\"\n";
-  f << "            },\n";
-  f << "            {\n";
-  f << "                \"AMSLAltAboveTerrain\": null,\n";
-  f << "                \"Altitude\": 50,\n";
-  f << "                \"AltitudeMode\": 1,\n";
-  f << "                \"autoContinue\": true,\n";
-  f << "                \"command\": 16,\n";
-  f << "                \"doJumpId\": 2,\n";
-  f << "                \"frame\": 3,\n";
-  f << "                \"params\": [\n";
-  f << "                    0,\n";
-  f << "                    0,\n";
-  f << "                    0,\n";
-  f << "                    null,\n";
-  f << "                    37.08681892,\n";
-  f << "                    -76.37668146,\n";
-  f << "                    50\n";
-  f << "                ],\n";
-  f << "                \"type\": \"SimpleItem\"\n";
-  f << "            },\n";
-  f << "            {\n";
-  f << "                \"AMSLAltAboveTerrain\": null,\n";
-  f << "                \"Altitude\": 50,\n";
-  f << "                \"AltitudeMode\": 1,\n";
-  f << "                \"autoContinue\": true,\n";
-  f << "                \"command\": 16,\n";
-  f << "                \"doJumpId\": 3,\n";
-  f << "                \"frame\": 3,\n";
-  f << "                \"params\": [\n";
-  f << "                    0,\n";
-  f << "                    0,\n";
-  f << "                    0,\n";
-  f << "                    null,\n";
-  f << "                    37.08559138,\n";
-  f << "                    -76.37562277,\n";
-  f << "                    50\n";
-  f << "                ],\n";
-  f << "                \"type\": \"SimpleItem\"\n";
-  f << "            },\n";
-  f << "            {\n";
-  f << "                \"AMSLAltAboveTerrain\": null,\n";
-  f << "                \"Altitude\": 50,\n";
-  f << "                \"AltitudeMode\": 1,\n";
-  f << "                \"autoContinue\": true,\n";
-  f << "                \"command\": 16,\n";
-  f << "                \"doJumpId\": 4,\n";
-  f << "                \"frame\": 3,\n";
-  f << "                \"params\": [\n";
-  f << "                    0,\n";
-  f << "                    0,\n";
-  f << "                    0,\n";
-  f << "                    null,\n";
-  f << "                    37.08447675,\n";
-  f << "                    -76.37772785,\n";
-  f << "                    50\n";
-  f << "                ],\n";
-  f << "                \"type\": \"SimpleItem\"\n";
-  f << "            },\n";
-  f << "            {\n";
-  f << "                \"AMSLAltAboveTerrain\": null,\n";
-  f << "                \"Altitude\": 50,\n";
-  f << "                \"AltitudeMode\": 1,\n";
-  f << "                \"autoContinue\": true,\n";
-  f << "                \"command\": 16,\n";
-  f << "                \"doJumpId\": 5,\n";
-  f << "                \"frame\": 3,\n";
-  f << "                \"params\": [\n";
-  f << "                    0,\n";
-  f << "                    0,\n";
-  f << "                    0,\n";
-  f << "                    null,\n";
-  f << "                    37.0855079,\n";
-  f << "                    -76.3786819,\n";
-  f << "                    50\n";
-  f << "                ],\n";
-  f << "                \"type\": \"SimpleItem\"\n";
-  f << "            },\n";
-  f << "            {\n";
-  f << "                \"autoContinue\": true,\n";
-  f << "                \"command\": 20,\n";
-  f << "                \"doJumpId\": 6,\n";
-  f << "                \"frame\": 2,\n";
-  f << "                \"params\": [\n";
-  f << "                    0,\n";
-  f << "                    0,\n";
-  f << "                    0,\n";
-  f << "                    0,\n";
-  f << "                    0,\n";
-  f << "                    0,\n";
-  f << "                    0\n";
-  f << "                ],\n";
-  f << "                \"type\": \"SimpleItem\"\n";
-  f << "            }\n";
+  
+  outputItem(f, altitude, longitude, latitude, 22, 1, hold_time);
+  outputItem(f, altitude, longitude, latitude, 16, 2, hold_time);
+  outputItem(f, altitude, longitude, latitude, 16, 3, hold_time);
+  outputItem(f, altitude, longitude, latitude, 16, 4, hold_time);
+  outputItem(f, altitude, longitude, latitude, 16, 5, hold_time);
+  outputItem(f, altitude, longitude, latitude, 16, 6, hold_time);
+  
   f << "        ],\n";
   f << "        \"plannedHomePosition\": [\n";
-  f << "            37.08573377,\n";
-  f << "            -76.37887271,\n";
-  f << "            7.137364280395303\n";
+  f << "            " << latitude1 << ",\n";
+  f << "            " << longitude1 << ",\n";
+  f << "            " << landing_altitude << "\n";
   f << "        ],\n";
   f << "        \"vehicleType\": 2,\n";
   f << "        \"version\": 2\n";
