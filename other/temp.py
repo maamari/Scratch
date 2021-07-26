@@ -7,36 +7,36 @@ R2 = 20350000
 flat = 298.257223563
 
 def ecef2geo3(x, y, z):
-	a = 6378137.0
-	b = 6356752.314245
-	a2 = a*a
-	b2 = b*b
-	e2 = 1-(b2/a2)
-	e = e2/(1-e2)
-	p = np.sqrt(x*x + y*y)
-	q = np.arctan2(a * z, b * p)
+    a = 6378137.0
+    b = 6356752.314245
+    a2 = a*a
+    b2 = b*b
+    e2 = 1-(b2/a2)
+    e = e2/(1-e2)
+    p = np.sqrt(x*x + y*y)
+    q = np.arctan2(a * z, b * p)
+    
+    sq = np.sin(q)
+    cq = np.cos(q)
+    
+    sq3 = sq * sq * sq
+    cq3 = cq * cq * cq
+    
+    phi = np.arctan2(z + e * b * sq3, p - e2 * a * cq3)
+    lmd = np.arctan2(y, x)
+    v = a / np.sqrt(1.0 - e2 * np.sin(phi) * np.sin(phi))
+    
+    lat = np.rad2deg(phi)
+    lon = np.rad2deg(lmd)
+    h = (p / np.cos(phi)) - v
 
-	sq = np.sin(q)
-	cq = np.cos(q)
-
-	sq3 = sq * sq * sq
-	cq3 = cq * cq * cq
-
-	phi = np.arctan2(z + e * b * sq3, p - e2 * a * cq3)
-	lmd = np.arctan2(y, x)
-	v = a / np.sqrt(1.0 - e2 * np.sin(phi) * np.sin(phi))
-
-	lat = np.rad2deg(phi)
-	lon = np.rad2deg(lmd)
-	h = (p / np.cos(phi)) - v
-
-	print(round(lat,2),round(lon,2),round(h,2))
+    print(round(lat,2),round(lon,2),round(h,2))
 
 def ecef2geo(x,y,z):
     rho = sqrt(pow(x,2)+pow(y,2)+pow(z,2))
     lat = cyl2geo(rho,z,R,flat)
     lon = atan2(y,x)
-    
+   
     print(degrees(lat[0]), degrees(lon), lat[1])
 
 def cyl2geo(rho,z,a,f):
@@ -48,7 +48,7 @@ def cyl2geo(rho,z,a,f):
     phi = atan2(z+b*ep2*pow(sin(beta),3),rho-a*e2*pow(cos(beta),3))
 
     betaNew = atan2((1-f)*sin(phi),cos(phi))
-    
+   
     count = 0;
     while((beta!=betaNew) and (count<5)):
         beta = betaNewphi = atan2(z+b*ep2*pow(sin(beta),3),rho-a*e2*pow(cos(beta),3))
@@ -71,7 +71,7 @@ def aer2geo2(azi,ele):
     sRange = sqrt(pow(R*cos(radians(ele)),2)+pow(R2,2)-pow(R,2))-R*cos(radians(ele))
     x,y,z = aer2ecef2(azi,ele,sRange)
     #x,y,z = aer2ecef(azi,ele,sRange)
-    ecef2geo(x,y,z)
+    ecef2geo3(x,y,z)
 
 def aer2ecef2(azi,ele,rang):
     x,y,z = geo2ecef(36.0926,-76.3829)
@@ -109,7 +109,7 @@ def geo2ecef(lon,lat):
     rho,z = geo2cyl(lat,0,R,flat)
     x = rho*cos(radians(lon))
     y = rho*cos(radians(lon))
-    
+   
     return x,y,z
 
 def geo2cyl(phi,h,a,f):
@@ -141,3 +141,5 @@ for coord in azieles:
 
 #res = aer2geo(198,420)
 #print(res[0],res[1],res[2])
+
+
