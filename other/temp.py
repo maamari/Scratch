@@ -123,7 +123,8 @@ def geo2cyl(phi,h,a,f):
 
     return rho,z
 
-azieles = [[267,44],
+azieles = [[360,90],
+           [267,44],
            [37,10],
            [75,6],
            [315,71],
