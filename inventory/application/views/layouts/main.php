@@ -1,14 +1,25 @@
+
 <html lang="en">
+
 <head>
+
+ 
+
+
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
   <title>Inventory Management System</title>
+
   <!-- Template CSS -->
   <link rel="stylesheet" href="<?=base_url()?>assets/css/style-starter.css">
+
   <!-- google fonts -->
   <link href="//fonts.googleapis.com/css?family=Nunito:300,400,600,700,800,900&display=swap" rel="stylesheet">
 </head>
+
 <body class="sidebar-menu-collapsed" >
   <div class="se-pre-con"></div>
 <section>
@@ -19,6 +30,9 @@
     <div class="logo">
       <h1><a href="<?=base_url()?>index.php">Inventory Management System</a></h1>
     </div>
+
+
+
     <div class="logo-icon text-center" style="padding-top: 15px">
       <a href="<?=base_url()?>index.php" title="logo"><img src="<?=base_url()?>assets/images/logo.png" alt="logo-icon"> </a>
     </div>
