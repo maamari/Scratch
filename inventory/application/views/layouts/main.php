@@ -1,40 +1,24 @@
-
 <html lang="en">
-
 <head>
-
- 
-
-
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-
   <title>Inventory Management System</title>
-
   <!-- Template CSS -->
   <link rel="stylesheet" href="<?=base_url()?>assets/css/style-starter.css">
-
   <!-- google fonts -->
   <link href="//fonts.googleapis.com/css?family=Nunito:300,400,600,700,800,900&display=swap" rel="stylesheet">
 </head>
-
 <body class="sidebar-menu-collapsed" >
-  <div class="se-pre-con"></div>
 <section>
   <!-- sidebar menu start -->
   <div class="sidebar-menu sticky-sidebar-menu">
 
     <!-- logo start -->
     <div class="logo">
-      <h1><a href="<?=base_url()?>index.php">Inventory Management System</a></h1>
+      <h1><a href="<?=base_url()?>index.php"></a></h1>
     </div>
-
-
-
     <div class="logo-icon text-center" style="padding-top: 15px">
-      <a href="<?=base_url()?>index.php" title="logo"><img src="<?=base_url()?>assets/images/logo.png" alt="logo-icon"> </a>
     </div>
     <!-- //logo end -->
 
@@ -43,15 +27,15 @@
       <!-- sidebar nav start -->
       <ul class="nav nav-pills nav-stacked custom-nav">
         
-        <li class="active"><a href="<?=base_url()?>index.php"><i class="fa fa-pencil-square-o"></i><span> Form</span></a>
+        <li class="active"><a href="<?=base_url()?>index.php"><i class="fa fa-pencil-square-o"></i><span> New items</span></a>
         </li>
        
           <!-- <li><a href="<?=base_url()?>user/index"><i class="fa fa-users"></i> <span>Users</span></a></li> -->
      
          <!-- <li><a href="<?=base_url()?>items/index"><i class="fa fa-database"></i> <span>Items</span></a></li> -->
           <li><a href="<?=base_url()?>Procurements"><i class="fa fa-user-o"></i> <span>Procurements</span></a></li>
-               <li><a href="<?=base_url()?>Ordered_items/index"><i class="fa fa-shopping-cart"></i> <span>Ordered Items</span></a></li>
-         
+               <li><a href="<?=base_url()?>Ordered_items/index"><i class="fa fa-shopping-cart"></i> <span>Ordered items</span></a></li>
+	       <li><a href="<?=base_url()?>Forms/index"><i class="fa fa-file-text-o"></i> <span>Forms</span></a></li> 
          <?php if($this->session->userdata('role') == MANAGER  OR $this->session->userdata('role') == DRIVER  OR $this->session->userdata('role') == ADMIN){ ?>
   
                <?php } ?>

@@ -5,27 +5,27 @@
  */
  
  
-class Ordered_items extends Admin_Controller{
+class Forms extends Admin_Controller{
     function __construct()
     {
         parent::__construct();
-        $this->load->model('Ordered_items_model');
+        $this->load->model('Forms_model');
         $this->load->model('Items_model');
     } 
 
     /*
-     * Listing of ordered_items
+     * Listing of forms
      */
     function index()
     {
-        $data['ordered_items'] = $this->Ordered_items_model->get_all_ordered_items2();
+        $data['forms'] = $this->Forms_model->get_all_forms2();
         
-        $data['_view'] = 'ordered_items/index';
+        $data['_view'] = 'forms/index';
         $this->load->view('layouts/main',$data);
     }
 
     /*
-     * Adding a new ordered_items
+     * Adding a new forms
      */
     function add()
     {   
@@ -52,26 +52,26 @@ class Ordered_items extends Admin_Controller{
 				'created_by' => $this->session->userdata('first_name'),
             );
 
-            $ordered_items_id = $this->Ordered_items_model->add_ordered_items($params);
-            redirect('ordered_items/index');
+            $forms_id = $this->Forms_model->add_forms($params);
+            redirect('forms/index');
         }
         else
         {            
-            $data['_view'] = 'ordered_items/add';
+            $data['_view'] = 'forms/add';
             $this->load->view('layouts/main',$data);
         }
     }  
 
     /*
-     * Editing a ordered_items
+     * Editing a forms
      */
     function edit($id)
     {   
-        // check if the ordered_items exists before trying to edit it
-        $data['ordered_items'] = $this->Ordered_items_model->get_ordered_items($id);
+        // check if the forms exists before trying to edit it
+        $data['forms'] = $this->Forms_model->get_forms($id);
         $data['items'] = $this->Items_model->get_all_items();
         
-        if(isset($data['ordered_items']['id']))
+        if(isset($data['forms']['id']))
         {
             $this->load->library('form_validation');
 
@@ -87,17 +87,17 @@ class Ordered_items extends Admin_Controller{
                 'ppu' =>  $this->input->post('ppu'),
                 'location' =>  $this->input->post('location'),
                 );              
-                $this->Ordered_items_model->update_ordered_items($id,$params);   
-                redirect('ordered_items/index');
+                $this->Forms_model->update_forms($id,$params);   
+                redirect('forms/index');
             }
             else
             {
-                $data['_view'] = 'ordered_items/edit';
+                $data['_view'] = 'forms/edit';
                 $this->load->view('layouts/main',$data);
             }
         }
         else
-            show_error('The ordered_items you are trying to edit does not exist.');
+            show_error('The forms you are trying to edit does not exist.');
     } 
 
 
@@ -106,8 +106,8 @@ class Ordered_items extends Admin_Controller{
 
       function assign($id)
     {   
-        // check if the ordered_items exists before trying to edit it
-        $data['assign'] = $this->Ordered_items_model->get_ordered_items($id);
+        // check if the forms exists before trying to edit it
+        $data['assign'] = $this->Forms_model->get_forms($id);
          $data['test_identifiers'] = $this->Test_identifiers_model->get_all_test_identifiers2();
 
         
@@ -123,30 +123,30 @@ class Ordered_items extends Admin_Controller{
 				'lab_sub_no' => $this->input->post('lab_sub_no'),
 				
                 );
-          $this->Ordered_items_model->update_ordered_items($id,$params); 
+          $this->Forms_model->update_forms($id,$params); 
           $params2 = array(
 				'assigned_status' => ASSIGNED,
 				
                 );  
                 $test_identifiers_id = $this->input->post('lab_sub_no'); 
-                $this->Test_identifiers_model->update_test_identifiers2($test_identifiers_id,$params2);redirect('ordered_items/index');
+                $this->Test_identifiers_model->update_test_identifiers2($test_identifiers_id,$params2);redirect('forms/index');
             }
             else
             {
-                $data['_view'] = 'ordered_items/assign';
+                $data['_view'] = 'forms/assign';
                 $this->load->view('layouts/main',$data);
             }
         }
         else
-            show_error('The ordered_items you are trying to edit does not exist.');
+            show_error('The forms you are trying to edit does not exist.');
     } 
 
       function results($id)
     {   
-        // check if the ordered_items exists before trying to edit it
-        $data['ordered_items'] = $this->Ordered_items_model->get_ordered_items2($id);
+        // check if the forms exists before trying to edit it
+        $data['forms'] = $this->Forms_model->get_forms2($id);
         
-        if(isset($data['ordered_items']['id']))
+        if(isset($data['forms']['id']))
         {
             $this->load->library('form_validation');
 
@@ -172,36 +172,36 @@ class Ordered_items extends Admin_Controller{
                 );
                  
               
-                $this->Ordered_items_model->update_ordered_items($id,$params);            
-                redirect('ordered_items/index');
+                $this->Forms_model->update_forms($id,$params);            
+                redirect('forms/index');
             }
             else
             {
-                $data['_view'] = 'ordered_items/results';
+                $data['_view'] = 'forms/results';
                 $this->load->view('layouts/main',$data);
             }
         }
         else
-            show_error('The ordered_items you are trying to edit does not exist.');
+            show_error('The forms you are trying to edit does not exist.');
     } 
 
 
 
     /*
-     * Deleting ordered_items
+     * Deleting forms
      */
     function remove($id)
     {
-        $ordered_items = $this->Ordered_items_model->get_ordered_items($id);
+        $forms = $this->Forms_model->get_forms($id);
 
-        // check if the ordered_items exists before trying to delete it
-        if(isset($ordered_items['id']))
+        // check if the forms exists before trying to delete it
+        if(isset($forms['id']))
         {
-            $this->Ordered_items_model->delete_ordered_items($id);
-            redirect('ordered_items/index');
+            $this->Forms_model->delete_forms($id);
+            redirect('forms/index');
         }
         else
-            show_error('The ordered_items you are trying to delete does not exist.');
+            show_error('The forms you are trying to delete does not exist.');
     }
     
 }
