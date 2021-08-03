@@ -1,11 +1,13 @@
 import numpy as np
+from  numpy.linalg import inv
 
-A = [ 1, 2, 3, 1.0 ]
-B = [ 0.4, 0.5, 0.6, 1.0 ]
-C = [ 0.007, 0.008, 0.009, 1.0 ]
-D = [ 1, 1.1, 1.2, 1.0 ]
-E = [ 1.3, 1.4, 1.5, 1.0 ]
+A = [ 3.29, 0.34, 0.19, 0.16 ]
+B = [ 0.34, 2.7,-0.27, -0.062 ]
+C = [ 0.19, -0.27, 4.42, 6.08 ]
+D = [ 0.162, -0.062, 6.08, 11 ]
 
+print(inv(np.array([A,B,C,D])))
+'''
 data = np.array([A,B,C,D,E]).T
 dataT = np.array([A,B,C,D,E])
 
@@ -43,3 +45,4 @@ c *= np.true_divide(1, fact)
 #print(c)
 #print(c.squeeze())
 #print(c.squeeze())
+'''
