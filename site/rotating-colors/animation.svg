@@ -1,0 +1,72 @@
+<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <clipPath id="circle">
+      <circle cx="50" cy="50" r="46" fill="green" />
+    </clipPath>
+  </defs>
+  <style type="text/css">
+    path {
+      clip-path: url(#circle);
+    }
+    .ray {
+      opacity: 0;
+      animation: animate 1s infinite;
+    }
+    @keyframes animate {
+      0%, 40% {
+        opacity: 0;
+      }
+      15%, 25% {
+        opacity: 1;
+      }
+    }
+    .ray-2 { animation-delay: calc(0.041666666s * 1); }
+    .ray-3 { animation-delay: calc(0.041666666s * 2); }
+    .ray-4 { animation-delay: calc(0.041666666s * 3); }
+    .ray-5 { animation-delay: calc(0.041666666s * 4); }
+    .ray-6 { animation-delay: calc(0.041666666s * 5); }
+    .ray-7 { animation-delay: calc(0.041666666s * 6); }
+    .ray-8 { animation-delay: calc(0.041666666s * 7); }
+    .ray-9 { animation-delay: calc(0.041666666s * 8); }
+    .ray-10 { animation-delay: calc(0.041666666s * 9); }
+    .ray-11 { animation-delay: calc(0.041666666s * 10); }
+    .ray-12 { animation-delay: calc(0.041666666s * 11); }
+    .ray-13 { animation-delay: calc(0.041666666s * 12); }
+    .ray-14 { animation-delay: calc(0.041666666s * 13); }
+    .ray-15 { animation-delay: calc(0.041666666s * 14); }
+    .ray-16 { animation-delay: calc(0.041666666s * 15); }
+    .ray-17 { animation-delay: calc(0.041666666s * 16); }
+    .ray-18 { animation-delay: calc(0.041666666s * 17); }
+    .ray-19 { animation-delay: calc(0.041666666s * 18); }
+    .ray-20 { animation-delay: calc(0.041666666s * 19); }
+    .ray-21 { animation-delay: calc(0.041666666s * 20); }
+    .ray-22 { animation-delay: calc(0.041666666s * 21); }
+    .ray-23 { animation-delay: calc(0.041666666s * 22); }
+    .ray-24 { animation-delay: calc(0.041666666s * 23); }
+  </style>
+  <path d="M100 0H0V100H100V0Z" fill="#2f2d2d" />
+  <path class="ray ray-1 green" d="M50 50L78 100H100L50 50Z" fill="#218956" />
+  <path class="ray ray-2 blue" d="M50 50L63 100H79L50 50Z" fill="#0075B7" />
+  <path class="ray ray-3 purple" d="M50 50L64 100H50V50Z" fill="#AF5E85" />
+  <path class="ray ray-4 red" d="M50 50L36 100H50V50Z" fill="#D3351D" />
+  <path class="ray ray-5 orange" d="M50 50L20 100H37L50 50Z" fill="#F78F22" />
+  <path class="ray ray-6 yellow" d="M50 50L0 100H21L50 50Z" fill="#EDC125" />
+  <path class="ray ray-7 green" d="M50 50L-3.13127e-06 78L-4.09292e-06 100L50 50Z" fill="#218956" />
+  <path class="ray ray-8 blue" d="M50 50L-2.4756e-06 63L-3.17498e-06 79L50 50Z" fill="#0075B7" />
+  <path class="ray ray-9 purple" d="M50 50L-2.51931e-06 64L-1.90735e-06 50L50 50Z" fill="#AF5E85" />
+  <path class="ray ray-10 red" d="M50 50L-1.90735e-06 36L-2.51931e-06 50L50 50Z" fill="#D3351D" />
+  <path class="ray ray-11 orange" d="M50 50L0 20L-7.43094e-07 37L50 50Z" fill="#F78F22" />
+  <path class="ray ray-12 yellow" d="M50 50L0 -2.18557e-06L-9.17939e-07 21L50 50Z" fill="#EDC125" />
+  <path class="ray ray-13 green" d="M50 50L22 -1.00772e-05L4.37114e-06 -1.20005e-05L50 50Z" fill="#218956" />
+  <path class="ray ray-14 blue" d="M50 50L37 -8.76589e-06L21 -1.01647e-05L50 50Z" fill="#0075B7" />
+  <path class="ray ray-15 purple" d="M50 50L36 -8.85331e-06L50 -7.62939e-06L50 50Z" fill="#AF5E85" />
+  <path class="ray ray-16 red" d="M50 50L64 0L50 -1.22392e-06L50 50Z" fill="#D3351D" />
+  <path class="ray ray-17 orange" d="M50 50L80 0L63 -1.48619e-06L50 50Z" fill="#F78F22" />
+  <path class="ray ray-18 yellow" d="M50 50L100 0L79 -1.83588e-06L50 50Z" fill="#EDC125" />
+  <path class="ray ray-19 green" d="M50 50L100 22L100 -2.18557e-06L50 50Z" fill="#218956" />
+  <path class="ray ray-20 blue" d="M50 50L100 37L100 21L50 50Z" fill="#0075B7" />
+  <path class="ray ray-21 purple" d="M50 50L100 36L100 50L50 50Z" fill="#AF5E85" />
+  <path class="ray ray-22 red" d="M50 50L100 64L100 50L50 50Z" fill="#D3351D" />
+  <path class="ray ray-23 orange" d="M50 50L100 80L100 63L50 50Z" fill="#F78F22" />
+  <path class="ray ray-24 yellow" d="M50 50L100 100L100 79L50 50Z" fill="#EDC125" />
+</svg>

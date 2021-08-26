@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta charset="utf-8" />
+      <title>Title</title>
+      <meta property="og:type" content="website" />
+      <meta content="width=device-width, initial-scale=1" name="viewport" />
+      <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+      <link href="css/projects_style.css" rel="stylesheet" type="text/css" />
+      <meta name="viewport" content="width=device-width, user-scalable=no" />
+<style>
+#sortable { list-style-type: none; margin: 0; padding: 0; width: 450px; }
+#sortable > li { margin: 3px 3px 3px 0; padding: 1px; float: left; width: 100px; height: 90px; font-size: 4em; text-align: center; }
+
+
+.list-grid > .w-dyn-items {
+padding-bottom: 0;
+padding-bottom: 80vh;
+}
+
+/* new work css */
+.objective-grid {
+padding-top: 1rem;
+overflow: hidden;
+}
+
+#sortable {
+position: relative;
+width: 100%;
+display: flex;
+justify-content: space-evenly;
+box-shadow: inset 0 -1px 0 #1a0000;
+padding-right: 1rem;
+/* margin-left: -80px; */
+}
+
+#sortable:after {
+content: '';
+display: block;
+clear: both;
+}
+
+
+#sortable > li {
+line-height: 1;
+top: 0 !important;
+border: none;
+background: none;
+border-right: 1px dotted #1a0000;
+border-bottom: 1px dotted #1a0000;
+border-radius: 0 0 2rem 0;
+height: 115px;
+position: relative;
+margin: 0;
+margin-right: 1rem;
+width: 20%;
+/* border: 1px solid black; */
+}
+
+#sortable > li:first-child {
+max-width: 50px;
+}
+
+#sortable .objective-inner-text {
+font-size: 8px;
+color: #1a1a1a;
+position: absolute;
+background: #f2f3f5;
+padding: .3rem;
+left: 100%;
+bottom: 1.9rem;
+transform: rotate(-90deg) translateY(-50%);
+transform-origin: top left;
+text-align: left;
+padding-left: .5rem;
+min-width: 70px;
+/* cursor: pointer; */
+}
+
+.objective-edit {
+text-align: right;
+padding-top: .5rem;
+}
+
+.objective-edit a {
+display: inline-block;
+font-size: 8px;
+padding: 5px 10px;
+color: #595959;
+color: #d26466;
+}
+
+.objective-inner-text .close {
+display: none;
+font-size: 16px;
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
+padding: 5px;
+cursor: pointer;
+}
+
+
+.addLinkGroup {
+position: relative;
+display: block;
+}
+
+.addLinkGroup * {
+  font-size: 8px !important;
+}
+
+.addLinkGroup ul {
+list-style: none;
+margin: 0;
+padding: 0;
+position: absolute;
+top: 100%;
+left: 0;
+right: 0;
+text-align: left;
+display: none;
+}
+
+.addLinkGroup li {
+padding: 3px 0;
+color: #aec6cf;
+}
+
+
+.item-index {
+margin-bottom: 1rem;
+}
+
+.item-index > .menu-spacing-offset {
+display: none;
+}
+
+
+.item-index .menu-spacing-offset {
+display: block;
+margin-top: 60px !important;
+}
+
+
+
+
+
+
+.objective-main-text {
+position: relative;
+color: #595959;
+cursor: pointer;
+}
+
+
+.edit-enabled .ui-sortable > li:not(.unsortable) .objective-main-text:before {
+content: '\005E';
+position: absolute;
+bottom: 100%;
+left: 0;
+right: 0;
+text-align: center;
+display: block;
+transform: translateY(-2px);
+color: #aec6cf;
+}
+
+.edit-enabled .ui-sortable > li:not(.unsortable) .objective-main-text:after {
+content: '\005E';
+position: absolute;
+top: 100%;
+left: 0;
+right: 0;
+text-align: center;
+display: block;
+transform: translateY(0px) rotate(180deg);
+color: #aec6cf;
+}
+
+.edit-enabled .objective-main-text,
+.edit-enabled .objective-inner-text .close {
+  color: #aec6cf;
+}
+
+/* objective full screen mode */
+.item-index.fixed-objective {
+height: 140vh;
+}
+
+
+.item-index.fixed-objective .grid-meta,
+.item-index.fixed-objective .div-block-817 {
+display: none;
+}
+
+.close-fixed-objective {
+display: none;
+}
+
+.div-block-816 {
+position: relative;
+}
+
+.item-index.fixed-objective .div-block-816 .close-fixed-objective {
+display: block;
+position: absolute;
+bottom: 25%;
+right: 0;
+cursor: pointer;
+padding: .5rem .75rem;
+}
+</style>
+
+
+    </head>
+
+    <body class="body">
+      <div style="opacity: 1" class="nav-main">
+        <div class="wrapper">
+          <div class="g-8col main-nav">
+            <div
+              id="w-node-c5cdf26c-5a6c-227b-6597-ab6169fa07dd-b3e010b1"
+              class="c-main-nav-links"
+            >
+              <a href="#TOP" class="c-nav-item current w-inline-block">
+                <div class="text-breadcrumb-meta">(001)</div>
+                <div class="t-nav-item" style="color: #fdfd96;">Projects</div>
+              </a>
+              <a href="/originals" class="c-nav-item w-inline-block">
+                <div class="text-breadcrumb-meta">(002)</div>
+                <div class="t-nav-item" style="color: #aec6cf;">Explore</div>
+              </a>
+              <a href="/delta" class="c-nav-item w-inline-block">
+                <div class="text-breadcrumb-meta">(003)</div>
+                <div class="t-nav-item" style="color: #d26466;">About</div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        style="
+          opacity: 1;
+          filter: blur(0px);
+          transform: translate3d(0vw, 0vh, 0px) scale3d(1, 1, 1) rotateX(0deg)
+            rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+          transform-style: preserve-3d;
+        "
+        class="c-content"
+      >
+        <div class="c-page-hero">
+          <div class="c-page-title"></div>
+          <div class="c-collabs-hero-media">
+            <div class="w-dyn-list">
+              <div role="list" class="w-dyn-items"></div>
+            </div>
+          </div>
+        </div>
+        <div
+          id="index"
+          data-w-id="1547dc7c-e99e-a855-7408-120943eb81bc"
+          style="opacity: 1"
+          class="g-offset-layout collab-hero"
+        >
+          <div
+            id="w-node-_7d1920ce-75d6-841f-8cf5-e3c6ab840002-b3e010b1"
+            class="c-collab-index-context"
+          >
+            <div class="c-index-description">
+              <div
+                id="w-node-ca16ffd5-7e6e-77f4-da20-62f4154722a8-b3e010b1"
+                class="t-index-title"
+              >
+                Projects
+              </div>
+            </div>
+
+            <div class="c-sticky-nav-content">
+               <a href="#index" class="c-anchor-index w-inline-block">
+                 <div class="t-meta title anchor">INDEX</div>
+               </a>
+               <div class="w-dyn-list">
+                 <div role="list" class="w-dyn-items">
+                   <div role="listitem" class="w-dyn-item">
+                     <div
+                       href="#001"
+                       data-w-id="0f574f15-03f4-d151-b0b4-07b783ed6726"
+                       class="c-anchor-link"
+                     >
+                       <div class="c-sticky-item">
+                         <div data-scroll="mid" class="h-anchor-cms w-embed">
+                           <a href="#">
+                             <div class="t-anchor-arrow">↳</div>
+                             <div
+                               class="t-anchor-link-title"
+                               style="border-color: rgba(26, 26, 26, 0.3)"
+                             >
+                               Project 1
+                             </div>
+                           </a>
+                         </div>
+                         <div class="t-anchor-arrow off">↳&nbsp;&nbsp;</div>
+                         <div class="t-anchor-number off">(/00–</div>
+                         <div
+                           class="t-anchor-link-title off"
+                           style="border-color: rgba(26, 26, 26, 0.3)"
+                         >
+                           This is some text inside of a div block.
+                         </div>
+                       </div>
+                     </div>
+                   </div>
+                   <div role="listitem" class="w-dyn-item">
+                     <div
+                       href="#001"
+                       data-w-id="0f574f15-03f4-d151-b0b4-07b783ed6726"
+                       class="c-anchor-link"
+                     >
+                       <div class="c-sticky-item">
+                         <div data-scroll="mid" class="h-anchor-cms w-embed">
+                           <a href="#">
+                             <div class="t-anchor-arrow">↳</div>
+                             <div
+                               class="t-anchor-link-title"
+                               style="border-color: rgba(26, 26, 26, 0.3)"
+                             >
+                               Project 2
+                             </div>
+                           </a>
+                         </div>
+                         <div class="t-anchor-arrow off">↳&nbsp;&nbsp;</div>
+                         <div class="t-anchor-number off">(/00–</div>
+                         <div
+                           class="t-anchor-link-title off"
+                           style="border-color: rgba(26, 26, 26, 0.3)"
+                         >
+                           This is some text inside of a div block.
+                         </div>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+             </div>
+
+             <div class="help-text">
+                <a href="#">HELP</a>
+             </div>
+          </div>
+          <div
+            id="w-node-dcf02841-8aba-40b3-821c-ce026ed35e40-b3e010b1"
+            class="c-body-content no-pad"
+          >
+            <div
+              class="hr thiccc"
+              style="
+                transform: translate3d(0px, 0px, 0px) scale3d(0, 0, 1)
+                  rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+                transform-style: preserve-3d;
+              "
+            ></div>
+            <div class="container-index-links">
+              <div class="container-index-column">
+                <div class="w-dyn-list">
+                  <div role="list" class="w-dyn-items project-complete">
+
+                    <div role="listitem" class="w-dyn-item project-item new-project">
+                      <div class="c-hero-anchor-link off">
+                        <div
+                          id="w-node-dcf02841-8aba-40b3-821c-ce026ed35e4d-b3e010b1"
+                          class="c-hero-index-date"
+                        >
+                          <div class="t-hero-index-date">2021+</div>
+                        </div>
+                        <div
+                          id="w-node-dcf02841-8aba-40b3-821c-ce026ed35e4f-b3e010b1"
+                          class="c-hero-index-title"
+                        >
+                          <div class="t-hero-index-x">×</div>
+                          <div class="t-hero-index-title">AT3-21</div>
+                          <div class="t-hero-index-r">®</div>
+                        </div>
+                        <div
+                          id="w-node-dcf02841-8aba-40b3-821c-ce026ed35e51-b3e010b1"
+                          class="c-hero-index-role"
+                        >
+                          <div class="t-hero-index-role">Web Design</div>
+                        </div>
+                        <div
+                          id="w-node-dcf02841-8aba-40b3-821c-ce026ed35e53-b3e010b1"
+                          class="c-hero-index-arrow"
+                        >
+                          <div class="t-hero-index-arrow">↓</div>
+                        </div>
+                      </div>
+                      <div class="e-collab-index w-embed">
+                        <a href="#AT3-21">
+                          <div class="c-hero-anchor-link">
+                            <div class="c-hero-index-date">
+                              <div class="t-hero-index-date">2021+</div>
+                            </div>
+                            <div class="c-hero-index-title">
+                              <div class="t-hero-index-x">+</div>
+                              <div class="t-hero-index-title">New project</div>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+
+
+
+                <div
+                  data-w-id="480b654b-8f2e-b8e4-b2d2-2adeecb88a3d"
+                  role="listitem"
+                  class="item-index collabs w-dyn-item project-item-details"
+                  style="opacity: 1"
+                >
+                  <div class="w-embed">
+                    <div id="Apple" class=""></div>
+                  </div>
+
+
+                  <div class="w-layout-grid g-8col grid-meta">
+                    <div
+                      id="w-node-_480b654b-8f2e-b8e4-b2d2-2adeecb88a40-b3e010b1"
+                      class="div-block-631"
+                    >
+                      <div class="t-meta">08/11/2021 -</div>
+                    </div>
+                    <div
+                      id="w-node-_480b654b-8f2e-b8e4-b2d2-2adeecb88a44-b3e010b1"
+                    ></div>
+                    <div
+                      id="w-node-_480b654b-8f2e-b8e4-b2d2-2adeecb88a46-b3e010b1"
+                      class="mobile"
+                    ></div>
+                    <div
+                      id="w-node-_480b654b-8f2e-b8e4-b2d2-2adeecb88a48-b3e010b1"
+                    >
+                      <div class="t-meta">Collaborators</div>
+                    </div>
+                  </div>
+                  <div class="div-block-816">
+                    <div
+                      id="w-node-_480b654b-8f2e-b8e4-b2d2-2adeecb88a5c-b3e010b1"
+                      class="container-collab-copy"
+                    >
+                      <div class="c-delta-post-ctas w-condition-invisible">
+                        <a
+                          data-w-id="d9f2b828-5712-628c-b42c-4283a26198c2"
+                          href="#"
+                          class="c-link w-inline-block"
+                        >
+                          <div class="t-short w-dyn-bind-empty"></div>
+                          <div class="t-short arrow">→</div>
+                        </a>
+                      </div>
+                      <div class="c-text-line collab-title">
+                        <div class="t-collab-title-index">Project 1</div>
+                      </div>
+                      <div class="c-collab-intro-text">
+                        <div class="t-short">Objective</div>
+                      </div>
+                    </div>
+                    <div class="div-block-817">
+                      
+                      <div class="objectives">
+
+                        <div class="objective-grid">
+                          <ul id="sortable">
+                            <li class="ui-state-default">
+                              <div class="objective-inner-text"><span class="objective-main-text">CODE</span> <span class="close">&times;</span></div>
+                            </li>
+                            <li class="ui-state-default">
+                              <div class="objective-inner-text"><span class="objective-main-text">DATA</span> <span class="close">&times;</span></div>
+                            </li>
+                            <li class="ui-state-default">
+                              <div class="objective-inner-text"><span class="objective-main-text">REFERENCES</span> <span class="close">&times;</span></div>
+                            </li>
+                            <li class="ui-state-default">
+                              <div class="objective-inner-text"><span class="objective-main-text">PAPER</span> <span class="close">&times;</span></div>
+                            </li>
+                            <li class="ui-state-default">
+                              <div class="objective-inner-text"><span class="objective-main-text">SUBMISSION</span> <span class="close">&times;</span></div>
+                            </li>
+
+                            <li class="unsortable">
+                              <div class="objective-inner-text">
+                                <a class="addLinkGroup" href="#">
+                                  <span class="addLink">ADD +</span>
+                                  <ul>
+                                    <li>ONE more</li>
+                                    <li>ONE</li>
+                                    <li>ONE</li>
+                                  </ul>
+                                </a>
+                              </div>
+                            </li>
+
+
+                          </ul>
+                        </div>
+
+                        <div class="objective-edit">
+                          <a class="editLink" href="#">
+                            EDIT
+                          </a>
+                        </div>
+
+                      </div>
+
+                    </div>
+
+                    
+                  </div>
+
+
+                  
+
+
+                </div>
+
+
+                
+                <div role="listitem" class="w-dyn-item project-item">
+                  <div class="c-hero-anchor-link off">
+                    <div
+                      id="w-node-dcf02841-8aba-40b3-821c-ce026ed35e4d-b3e010b1"
+                      class="c-hero-index-date"
+                    >
+                      <div class="t-hero-index-date">2018+</div>
+                    </div>
+                    <div
+                      id="w-node-dcf02841-8aba-40b3-821c-ce026ed35e4f-b3e010b1"
+                      class="c-hero-index-title"
+                    >
+                      <div class="t-hero-index-x">×</div>
+                      <div class="t-hero-index-title">Apple</div>
+                      <div class="t-hero-index-r">®</div>
+                    </div>
+                    <div
+                      id="w-node-dcf02841-8aba-40b3-821c-ce026ed35e51-b3e010b1"
+                      class="c-hero-index-role"
+                    >
+                      <div class="t-hero-index-role">Product Marketing</div>
+                    </div>
+                    <div
+                      id="w-node-dcf02841-8aba-40b3-821c-ce026ed35e53-b3e010b1"
+                      class="c-hero-index-arrow"
+                    >
+                      <div class="t-hero-index-arrow">↓</div>
+                    </div>
+                  </div>
+                  <div class="e-collab-index w-embed">
+                    <a href="#">
+                      <div class="c-hero-anchor-link">
+                        <div class="c-hero-index-date">
+                          <div class="t-hero-index-date">2021+</div>
+                        </div>
+                        <div class="c-hero-index-title">
+                          <div class="t-hero-index-title">Project 1</div>
+                        </div>
+                        <div class="c-hero-index-role">
+                          <div class="t-hero-index-role">Domain</div>
+                        </div>
+                        <div class="c-hero-index-arrow">
+                          <div class="t-hero-index-arrow">↓</div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+
+
+
+                <div
+                  data-w-id="480b654b-8f2e-b8e4-b2d2-2adeecb88a3d"
+                  role="listitem"
+                  class="item-index collabs w-dyn-item project-item-details"
+                  style="opacity: 1"
+                >
+                  <div class="w-embed">
+                    <div id="Apple" class=""></div>
+                  </div>
+
+
+                  <div class="w-layout-grid g-8col grid-meta">
+                    <div
+                      id="w-node-_480b654b-8f2e-b8e4-b2d2-2adeecb88a40-b3e010b1"
+                      class="div-block-631"
+                    >
+                      <div class="t-meta">08/11/2021 -</div>
+                    </div>
+                    <div
+                      id="w-node-_480b654b-8f2e-b8e4-b2d2-2adeecb88a44-b3e010b1"
+                    ></div>
+                    <div
+                      id="w-node-_480b654b-8f2e-b8e4-b2d2-2adeecb88a46-b3e010b1"
+                      class="mobile"
+                    ></div>
+                    <div
+                      id="w-node-_480b654b-8f2e-b8e4-b2d2-2adeecb88a48-b3e010b1"
+                    >
+                      <div class="t-meta">Collaborators</div>
+                    </div>
+                  </div>
+                  <div class="div-block-816">
+                    <div
+                      id="w-node-_480b654b-8f2e-b8e4-b2d2-2adeecb88a5c-b3e010b1"
+                      class="container-collab-copy"
+                    >
+                      <div class="c-delta-post-ctas w-condition-invisible">
+                        <a
+                          data-w-id="d9f2b828-5712-628c-b42c-4283a26198c2"
+                          href="#"
+                          class="c-link w-inline-block"
+                        >
+                          <div class="t-short w-dyn-bind-empty"></div>
+                          <div class="t-short arrow">→</div>
+                        </a>
+                      </div>
+                      <div class="c-text-line collab-title">
+                        <div class="t-collab-title-index">Project 2</div>
+                      </div>
+                      <div class="c-collab-intro-text">
+                        <div class="t-short">Objective</div>
+                      </div>
+                    </div>
+                    <div class="div-block-817">
+                      
+                      <div class="objectives">
+
+                        <div class="objective-grid">
+                          <ul id="sortable">
+                            <li class="ui-state-default">
+                              <div class="objective-inner-text"><span class="objective-main-text">CODE</span> <span class="close">&times;</span></div>
+                            </li>
+                            <li class="ui-state-default">
+                              <div class="objective-inner-text"><span class="objective-main-text">DATA</span> <span class="close">&times;</span></div>
+                            </li>
+                            <li class="ui-state-default">
+                              <div class="objective-inner-text"><span class="objective-main-text">REFERENCES</span> <span class="close">&times;</span></div>
+                            </li>
+                            <li class="ui-state-default">
+                              <div class="objective-inner-text"><span class="objective-main-text">PAPER</span> <span class="close">&times;</span></div>
+                            </li>
+                            <li class="ui-state-default">
+                              <div class="objective-inner-text"><span class="objective-main-text">SUBMISSION</span> <span class="close">&times;</span></div>
+                            </li>
+
+                            <li class="unsortable">
+                              <div class="objective-inner-text">
+                                <a class="addLinkGroup" href="#">
+                                  <span class="addLink">ADD +</span>
+                                  <ul>
+                                    <li>ONE more</li>
+                                    <li>ONE</li>
+                                    <li>ONE</li>
+                                  </ul>
+                                </a>
+                              </div>
+                            </li>
+
+
+                          </ul>
+                        </div>
+
+                        <div class="objective-edit">
+                          <a class="editLink" href="#">
+                            EDIT
+                          </a>
+                        </div>
+
+                      </div>
+
+                    </div>
+
+                    
+                  </div>
+
+
+                  
+
+
+                </div>
+
+
+                
+                <div role="listitem" class="w-dyn-item project-item">
+                  <div class="c-hero-anchor-link off">
+                    <div
+                      id="w-node-dcf02841-8aba-40b3-821c-ce026ed35e4d-b3e010b1"
+                      class="c-hero-index-date"
+                    >
+                      <div class="t-hero-index-date">2018+</div>
+                    </div>
+                    <div
+                      id="w-node-dcf02841-8aba-40b3-821c-ce026ed35e4f-b3e010b1"
+                      class="c-hero-index-title"
+                    >
+                      <div class="t-hero-index-x">×</div>
+                      <div class="t-hero-index-title">Apple</div>
+                      <div class="t-hero-index-r">®</div>
+                    </div>
+                    <div
+                      id="w-node-dcf02841-8aba-40b3-821c-ce026ed35e51-b3e010b1"
+                      class="c-hero-index-role"
+                    >
+                      <div class="t-hero-index-role">Product Marketing</div>
+                    </div>
+                    <div
+                      id="w-node-dcf02841-8aba-40b3-821c-ce026ed35e53-b3e010b1"
+                      class="c-hero-index-arrow"
+                    >
+                      <div class="t-hero-index-arrow">↓</div>
+                    </div>
+                  </div>
+                  <div class="e-collab-index w-embed">
+                    <a href="#">
+                      <div class="c-hero-anchor-link">
+                        <div class="c-hero-index-date">
+                          <div class="t-hero-index-date">2021+</div>
+                        </div>
+                        <div class="c-hero-index-title">
+                          <div class="t-hero-index-title">Project 2</div>
+                        </div>
+                        <div class="c-hero-index-role">
+                          <div class="t-hero-index-role">Domain</div>
+                        </div>
+                        <div class="c-hero-index-arrow">
+                          <div class="t-hero-index-arrow">↓</div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+
+
+
+
+                          
+                <div class="project-modal-popup">
+                  <div class="modal-window">
+                    <h3 class="text-center">PROJECT DELETION IS IRREVERSIBLE.</h3>
+                    <h3 class="text-center">TO CONFIRM, PLEASE ENTER PROJECT NAME:</h3>
+                    <input type="text" class="project-name-enter" />
+                    <button>DELETE</button>
+                    <span class="close-modal">×</span>
+                  </div>
+                </div>
+
+                    
+
+                
+
+                
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- projects goes here -->
+            <div
+              data-w-id="480b654b-8f2e-b8e4-b2d2-2adeecb88a3b"
+              class="list-grid w-dyn-list"
+            >
+              <div role="list" class="w-dyn-items">
+                
+                
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+      
+      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+      <!--
+        <script
+        src="https://uploads-ssl.webflow.com/5cb7be195426f23752acf2dc/js/webflow.ccaef4677.js"
+        type="text/javascript"
+      ></script>
+      -->
+
+
+
+      <script src="js/script.js"></script>
+
+    </body>
+  </head>
+</html>
