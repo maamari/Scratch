@@ -1,43 +1,31 @@
+'''
+Server test
+'''
 import socket
-import os
-from _thread import *
-import random 
-import time
+import sys
 
-sock = socket.socket()
-TCP_IP = '127.0.0.1'
-TCP_PORT = 2222
-BUFFER_SIZE = 2048
-clients = []
+if len(sys.argv) == 3:
+    # Get "IP address of Server" and also the "port number" from
+    # argument 1 and argument 2
+    IP = sys.argv[1]
+    PORT = int(sys.argv[2])
+else:
+    print("Run like : python3 server.py <arg1:server ip:this \
+           system IP 192.168.1.6> <arg2:server port:4444 >")
+    IP = "localhost"
+    PORT = 8000
 
-# Start server
-try:
-    sock.bind((TCP_IP, TCP_PORT))
-except socket.error as e:
-    print(str(e))
+# Create a UDP socket
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+# Bind the socket to the port
+server_address = (IP, PORT)
+s.bind(server_address)
+print("Do Ctrl+c to exit the program !!")
 
-# Listen for client
-print('Waiting for bridge...')
-sock.listen(5)
-
-# Accept new client on thread
-def new_client(client):
-    while True:
-        #data = client.recv(BUFFER_SIZE)
-        time.sleep(1)
-        data = str(random.randint(0,9))
-        for c in clients:
-            c.sendall(data.encode('utf-8'))
-    client.close()
-
-# Accept/place clients on threads
 while True:
-    cli, addr = sock.accept()
-    clients.append(cli)
-    print('Connected to: ' + addr[0] + ':' + str(addr[1]))
-#    for c in clients:
-#        time.sleep(2)
-#        data = random.randint(0,9)**2        
-#        c.sendall(str(data).encode('utf-8'))
-    start_new_thread(new_client, (cli, ))
-sock.close()
+    print("####### Server is listening #######")
+    data, address = s.recvfrom(1024)
+    print("\n\n 2. Server received: ", data.decode('utf-8'), "\n\n")
+    #send_data = input("Type some text to send => ")
+    #s.sendto(send_data.encode('utf-8'), address)
+    #print("\n\n 1. Server sent : ", send_data,"\n\n")
